@@ -5,7 +5,7 @@ import {
     setDoc,
     deleteDoc,
     onSnapshot,
-    getDoc
+    updateDoc
 } from "firebase/firestore";
 export class ProductsServices {
     db = getFirestore();
@@ -30,8 +30,11 @@ export class ProductsServices {
     }
 
     async deleteProduct(id) {
-        const productDelete = await deleteDoc(doc(this.db, "products", `${id}`));
-        console.log(productDelete, 'asdfsdf')
-        console.log(this.db, 'id')
+        await deleteDoc(doc(this.db, "products", `${id}`));
+    }
+
+    async updateProduct(id, obj) {
+        const washingtonRef = doc(this.db, "products", `${id}`);
+        await updateDoc(washingtonRef, {...obj});
     }
 }

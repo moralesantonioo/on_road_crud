@@ -1,4 +1,4 @@
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword  } from "firebase/auth";
 
 export class UserService {
     async authWithEmailPassword({ email, password }) {
@@ -7,10 +7,24 @@ export class UserService {
             .then((userCredential) => {
                 const user = userCredential.user;
                 window.localStorage.setItem('token', user.accessToken)
-                if(window.localStorage.getItem("token") != null ){
+                window.localStorage.setItem('user', user.email)
+                if (window.localStorage.getItem("token") != null) {
                     document.location.replace("/")
                 }
-                console.log(user, 'data');
+            })
+            .catch((error) => {
+                console.log(error)
+            });
+    }
+
+    RegisterUser = async ({ email, password }) => {
+        const auth = getAuth();
+        await createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                if(user){
+                    document.location.replace("/")
+                }
             })
             .catch((error) => {
                 console.log(error)

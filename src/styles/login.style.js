@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Tag } from 'antd';
 
 export const Container = styled.div`
     width: 100%;
@@ -11,6 +12,8 @@ export const Container = styled.div`
 
 export const Title = styled.h1`
     text-align: center;
+    font-size: 35px;
+    font-weight: bold;
 `
 
 export const Form = styled.form`
@@ -21,20 +24,19 @@ export const Form = styled.form`
 `
 
 export const Input = styled.input`
-    width: 250px;
-    height: 30px;
+    width: 300px;
+    height: 40px;
     outline: none;
     margin: 0 0 10px 0;
+    border: 1px solid #000;
 `
 
-export const Button = styled.div`
-    background: #5099F5;
-    color: #fff;
+
+export const Button = styled(Tag)`
     width: 150px;
-    height: 30px;
-    margin: 0 0 10px 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 5px 10px;
     cursor: pointer;
 `

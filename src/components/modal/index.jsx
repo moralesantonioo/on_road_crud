@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
-import { Modal, Button, Form, Input, Row, Col } from 'antd';
+import { Modal, Form, Input, Row, Col, Button } from 'antd';
 import { ProductsServices } from '../../services/products.services'
+import { Container, Tags, ButtonStyle, Title} from '../../styles/home.style'
 
 export const ModalNewProduct = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [form] = Form.useForm();
-    const [loading, setLoading] = useState(false);
+    const [loadingRegister, setLoadingRegister] = useState(false);
 
     const showModal = () => {
         setIsModalVisible(true);
     };
 
     const onFinish = (values) => {
-        setLoading(true)
+        setLoadingRegister(true)
         const productServices = new ProductsServices()
         productServices.setProducts(values)
-        setLoading(false);
-        form.resetFields();
-        setIsModalVisible(false);
+        setLoadingRegister(false)
+        form.resetFields()
+        setIsModalVisible(false)
     };
 
     const handleCancel = () => {
@@ -26,13 +27,12 @@ export const ModalNewProduct = () => {
     };
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', padding: '10px 10px' }}>
-            <Button type="primary" onClick={showModal}>
-                Nuevo producto
-            </Button>
-            <Modal title="Registrar técnico" visible={isModalVisible} footer={null} onCancel={handleCancel} width="450px">
+        <Container>
+            <Tags color="blue" onClick={showModal}>Nuevo producto</Tags>
+            <Modal title="Registrar producto" visible={isModalVisible} footer={null} onCancel={handleCancel} width="450px">
                 <Form form={form} onFinish={onFinish}>
                     <Row>
+                        <Title>Nombre:</Title>
                         <Col span={24}>
                             <Form.Item
                                 name="name"
@@ -47,6 +47,7 @@ export const ModalNewProduct = () => {
                         </Col>
                     </Row>
                     <Row>
+                        <Title>Fecha:</Title>
                         <Col span={24}>
                             <Form.Item
                                 name="register_date"
@@ -61,6 +62,7 @@ export const ModalNewProduct = () => {
                         </Col>
                     </Row>
                     <Row>
+                        <Title>Marca:</Title>
                         <Col span={24}>
                             <Form.Item
                                 name="brand"
@@ -75,6 +77,7 @@ export const ModalNewProduct = () => {
                         </Col>
                     </Row>
                     <Row>
+                        <Title>Precio:</Title>
                         <Col span={24}>
                             <Form.Item
                                 name="price"
@@ -89,6 +92,7 @@ export const ModalNewProduct = () => {
                         </Col>
                     </Row>
                     <Row>
+                        <Title>Cantidad:</Title>
                         <Col span={24}>
                             <Form.Item
                                 name="stock"
@@ -103,11 +107,11 @@ export const ModalNewProduct = () => {
                         </Col>
                     </Row>
 
-                    <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-                        { loading ? <p>Registrando...</p> : <Button type="primary" htmlType="submit">Registrar</Button> }
-                    </div>
+                    <ButtonStyle>
+                        { loadingRegister ? <p>Registrando...</p> : <Button type="primary" htmlType="submit">Registrar</Button> }
+                    </ButtonStyle>
                 </Form>
             </Modal>
-        </div>
+        </Container>
     );
 };

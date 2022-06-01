@@ -1,21 +1,17 @@
 import styled from 'styled-components';
+import { Tag } from 'antd';
 
 export const NavbarStyle = styled.div`
     width: 100%;
-    height: 50px;
+    height: 70px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 3px 2px 2px rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid #000;
     padding: 0 15px;
 `
 
-export const ButonLogout = styled.div`
-    width: 150px;
-    height: 40px;
-    background-color: red;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
+export const ButtonLogout = styled(Tag)`
+   padding: 5px 10px;
+   cursor: pointer;
 `

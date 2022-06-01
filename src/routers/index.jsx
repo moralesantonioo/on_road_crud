@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Login } from '../view/Login'
+import { RegisterUsers } from '../view/registerUser'
 import { Home } from '../view/Home'
 import { Layout } from "../layout"
 
@@ -11,6 +12,7 @@ export const AppRoutes = () => {
         <Router>
           <Routes>
             <Route path="/" element={<Login />} />
+            <Route path="/registro" element={<RegisterUsers />} />
           </Routes>
         </Router>
       </>

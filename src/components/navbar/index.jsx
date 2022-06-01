@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavbarStyle, ButonLogout } from '../../styles/navbar.style'
+import { NavbarStyle, ButtonLogout } from '../../styles/navbar.style'
 
 export const Navbar = () => {
     const logout = () => {
@@ -9,8 +9,8 @@ export const Navbar = () => {
 
     return(
         <NavbarStyle>
-            <span>usuario 1</span>
-            <ButonLogout onClick={logout}>logout</ButonLogout>
+            <div><b>USUARIO:</b> {window.localStorage.getItem('user')}</div>
+            <ButtonLogout color="#f50" onClick={logout}>Cerrar Sessión</ButtonLogout>
         </NavbarStyle>
     )
 }
